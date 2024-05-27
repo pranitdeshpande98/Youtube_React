@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import Body from './Components/Body';
 import { Provider } from 'react-redux';
 import store from './utils/store';
+// index.js or App.j
 
 function App() {
   return (
