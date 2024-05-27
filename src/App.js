@@ -1,18 +1,19 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Body from './Components/Body';
 import { Provider } from 'react-redux';
 import store from './utils/store';
-// index.js or App.j
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 
 function App() {
   return (
     <Provider store={store}>
-    <div>
-      <Header />
-      <Body />
-    </div>
+      <div className="flex flex-col h-screen">
+        <Header />
+        <Body />
+      </div>
     </Provider>
   );
 }
