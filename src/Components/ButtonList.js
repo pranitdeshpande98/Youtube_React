@@ -5,22 +5,25 @@ const ButtonList = () => {
   const buttonListRef = useRef(null);
 
   const scrollLeft = () => {
+    console.log('Scrolling left');
     if (buttonListRef.current) {
       buttonListRef.current.scrollLeft -= 100;
     }
   };
 
   const scrollRight = () => {
+    console.log('Scrolling right');
     if (buttonListRef.current) {
       buttonListRef.current.scrollLeft += 100;
     }
   };
 
   return (
-    <div className="fixed top-16 ml-50 bg-white shadow-md p-4 overflow-x-auto w-full">
+    <div className="fixed top-16 ml-50 bg-white shadow-md p-4 overflow-x-auto">
+      {/* Left scroll button */}
       <button
         onClick={scrollLeft}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10"
       >
         &lt;
       </button>
@@ -29,6 +32,7 @@ const ButtonList = () => {
         className="flex space-x-5 p-4 overflow-x-auto relative"
         style={{ scrollBehavior: 'smooth' }}
       >
+        {/* Your buttons here */}
         <Button name="All" />
         <Button name="Songs" />
         <Button name="Gaming" />
@@ -42,11 +46,11 @@ const ButtonList = () => {
         <Button name="SAB" />
         <Button name="CID" />
         <Button name="Modi" />
-        <Button name="Monsoon" />
       </div>
+      {/* Right scroll button */}
       <button
         onClick={scrollRight}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10"
       >
         &gt;
       </button>
