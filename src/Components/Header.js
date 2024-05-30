@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex items-center justify-between p-5 shadow-lg bg-white">
+    <div className="fixed top-0 left-0 w-full z-50 flex items-center justify-between p-5 shadow-lg bg-white">
       <div className="flex items-center">
         <img 
           onClick={toggleMenuHandler}

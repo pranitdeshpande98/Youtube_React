@@ -2,22 +2,33 @@ import React, { useRef } from 'react';
 import Button from './Button';
 
 const ButtonList = () => {
-  const containerRef = useRef(null);
+  const buttonListRef = useRef(null);
 
   const scrollLeft = () => {
-    containerRef.current.scrollLeft -= 200; // Adjust this value as needed
+    if (buttonListRef.current) {
+      buttonListRef.current.scrollLeft -= 100;
+    }
   };
 
   const scrollRight = () => {
-    containerRef.current.scrollLeft += 200; // Adjust this value as needed
+    if (buttonListRef.current) {
+      buttonListRef.current.scrollLeft += 100;
+    }
   };
 
   return (
-    <div className="relative">
-      <button className="fixed top-0 left-0 w-ful transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity" onClick={scrollLeft}>
+    <div className="fixed top-16 ml-50 bg-white shadow-md p-4 overflow-x-auto w-full">
+      <button
+        onClick={scrollLeft}
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
         &lt;
       </button>
-      <div className="flex space-x-5 p-4 overflow-x-auto" ref={containerRef}>
+      <div
+        ref={buttonListRef}
+        className="flex space-x-5 p-4 overflow-x-auto relative"
+        style={{ scrollBehavior: 'smooth' }}
+      >
         <Button name="All" />
         <Button name="Songs" />
         <Button name="Gaming" />
@@ -29,10 +40,14 @@ const ButtonList = () => {
         <Button name="Election" />
         <Button name="Watched" />
         <Button name="SAB" />
-        <Button name="SAB" />
-
+        <Button name="CID" />
+        <Button name="Modi" />
+        <Button name="Monsoon" />
       </div>
-      <button className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity" onClick={scrollRight}>
+      <button
+        onClick={scrollRight}
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-75 text-white p-2 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
         &gt;
       </button>
     </div>

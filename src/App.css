@@ -3,4 +3,28 @@
 @tailwind utilities;
 
 
+/* Ensure the parent container's height is managed */
+.w-72 {
+    width: 18rem;
+  }
+  
+  .h-100 {
+    height: 24rem; /* Adjust this value as needed for your design */
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-none {
+    flex: none;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
   
