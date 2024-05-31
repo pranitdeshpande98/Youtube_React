@@ -5,14 +5,14 @@ const ButtonList = () => {
   const buttonListRef = useRef(null);
 
   const scrollLeft = () => {
-    console.log('Scrolling left');
+
     if (buttonListRef.current) {
       buttonListRef.current.scrollLeft -= 100;
     }
   };
 
   const scrollRight = () => {
-    console.log('Scrolling right');
+
     if (buttonListRef.current) {
       buttonListRef.current.scrollLeft += 100;
     }
