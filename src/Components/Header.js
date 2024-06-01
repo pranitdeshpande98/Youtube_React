@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
-import {YOUTUBE_SEARCH_API} from "../utils/constants";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
-  
-  useEffect(()=>{
-    const timer = setTimeout(()=>getSearchSuggestions(),200);
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => getSearchSuggestions(), 200);
     return () => {
       clearTimeout(timer);
-    }
-  },[searchQuery]);
+    };
+  }, [searchQuery]);
 
-  const getSearchSuggestions = async() => {
-    const data = await fetch(YOUTUBE_SEARCH_API+searchQuery)
-    const json = await data.json();
-    
-  }
+  const getSearchSuggestions = async () => {
+    if (searchQuery) {
+      const response = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+      const data = await response.json();
+      setSuggestions(data[1] || []); // Assuming data[1] contains the suggestions
+    } else {
+      setSuggestions([]);
+    }
+  };
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -41,15 +46,30 @@ const Header = () => {
           />
         </a>
       </div>
-      <div className="flex items-center w-1/2">
+      <div className="flex items-center w-1/2 relative">
         <input
           className="w-full border border-gray-400 rounded-l-full p-2 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Search"
-          type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button className="border border-gray-400 px-5 py-2 rounded-r-full">
           🔍
         </button>
+        {suggestions.length > 0 && (
+          <div className="absolute top-12 left-0 w-full bg-white shadow-lg rounded-lg z-50">
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => setSearchQuery(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <div className="flex items-center">
         <img
